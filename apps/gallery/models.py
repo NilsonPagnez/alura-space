@@ -7,7 +7,7 @@ class Fotografia(models.Model):
     OPCOES_CATEGORIA = [
         ("NEBULOSA", "nebulosa"),
         ("ESTRELA", "estrela"),
-        ("GALÁXIA", "galáxia"),
+        ("GALAXIA", "galáxia"),
         ("PLANETA", "planeta")
     ]
 
@@ -16,9 +16,9 @@ class Fotografia(models.Model):
     categoria = models.CharField(max_length=100, choices=OPCOES_CATEGORIA, null=False, blank=False, default='')
     descricao = models.TextField(null=False, blank=False)
     foto = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True)
-    publicada = models.BooleanField(default=False)
+    publicada = models.BooleanField(default=True)
     data_fotografia = models.DateTimeField(default=datetime.now, blank=False)
-    usario = models.ForeignKey(
+    usuario = models.ForeignKey(
             to=User,
             on_delete=models.SET_NULL,
             null=True,
